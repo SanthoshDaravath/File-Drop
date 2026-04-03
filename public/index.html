@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>File Drop - Private File Storage</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <!-- Login Section -->
+    <div id="loginSection" class="section active">
+      <div class="header">
+        <h1>📤 File Drop</h1>
+        <p>Store and share files with a single username</p>
+      </div>
+
+      <div class="login-form">
+        <div class="form-group">
+          <label for="usernameInput">Username</label>
+          <input 
+            type="text" 
+            id="usernameInput" 
+            placeholder="Enter your username"
+            autofocus
+          >
+          <p class="form-hint">Special characters are allowed. Max 50 characters.</p>
+        </div>
+
+        <button class="btn btn-primary" onclick="handleLogin()">Login</button>
+        
+        <div id="loginError" class="error-message hidden"></div>
+      </div>
+
+      <div class="info-box">
+        <p><strong>ℹ️ How it works:</strong></p>
+        <ul>
+          <li>Enter any username (no password needed)</li>
+          <li>Upload your files</li>
+          <li>Login from any device with the same username to access your files</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Dashboard Section -->
+    <div id="dashboardSection" class="section">
+      <div class="dashboard-header">
+        <div>
+          <h1>📤 File Drop</h1>
+          <p>Welcome, <span id="usernameDisplay"></span>!</p>
+        </div>
+        <button class="btn btn-logout" onclick="handleLogout()">Logout</button>
+      </div>
+
+      <!-- Upload Area -->
+      <div id="dropZone" class="drop-zone">
+        <div class="upload-icon">📁</div>
+        <h2>Drop your files here</h2>
+        <p>or</p>
+        <input type="file" id="fileInput" class="file-input" multiple hidden>
+        <button class="btn btn-primary" onclick="document.getElementById('fileInput').value=''; document.getElementById('fileInput').click()">
+          Choose Files
+        </button>
+        <p class="small-text">Upload multiple files (up to 500MB each, max 20 files per upload)</p>
+      </div>
+
+      <!-- Files Info -->
+      <div id="filesInfo" class="files-info hidden">
+        <p><strong>📋 Files to upload:</strong> <span id="filesCount"></span></p>
+        <div id="filesListUpload" class="files-list-upload"></div>
+        <div id="fileNamingSection" class="file-naming-section hidden">
+          <p><strong>✏️ Customize file names (optional)</strong></p>
+          <div id="fileNamingInputs" class="file-naming-inputs"></div>
+        </div>
+      </div>
+
+      <!-- Upload Progress -->
+      <div id="progressContainer" class="progress-container hidden">
+        <div class="progress-bar-wrapper">
+          <div class="progress-bar">
+            <div id="progressFill" class="progress-fill"></div>
+          </div>
+          <p id="progressText" class="progress-text">0%</p>
+        </div>
+        <p id="uploadStatus" class="upload-status">Uploading...</p>
+      </div>
+
+      <!-- Error Message -->
+      <div id="errorMessage" class="error-message hidden"></div>
+
+      <!-- Files List -->
+      <div id="filesSection" class="files-section">
+        <h2>📂 Your Files</h2>
+        <div id="filesListDisplay" class="files-list">
+          <p class="no-files">No files uploaded yet</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
